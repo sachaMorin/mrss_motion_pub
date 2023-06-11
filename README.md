@@ -6,14 +6,20 @@ provide desktops where TagSLAM is already installed. You can also install the Ta
 
 ## Installation Instructions
 First make sure to fork this repository and **RENAME IT** to some ```$TEAM_NAME```.
+
+Now clone your package in tagslam_root:
+```shell
+cd ~/tagslam_root/src
+git clone $YOUR_FORK_URL
+```
+
 Your first commit should be to replace all instances of ```mrss_motion``` with ```$TEAM_NAME``` in the following files:
  - ```CMakeLists.txt```
  - ```package.xml```
 
-Now to set it up with TagSLAM MRSS on the desktops, run
+Once this is done, build your package
+
 ```shell
-cd ~/tagslam_root/src
-git clone $YOUR_FORK_URL
 cd ~/tagslam_root
 catkin_make
 ```
