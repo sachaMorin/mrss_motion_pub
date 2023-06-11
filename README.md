@@ -14,8 +14,9 @@ git clone $YOUR_FORK_URL
 ```
 
 Your first commit should be to replace all instances of ```mrss_motion``` with ```$TEAM_NAME``` in the following files:
- - ```CMakeLists.txt```
- - ```package.xml```
+- ```tagslam_root/src/$TEAM_NAME/CMakeLists.txt```
+ - ```tagslam_root/src/$TEAM_NAME/CMakeLists.txt```
+ - ```tagslam_root/src/$TEAM_NAME/src/launch/motion_planning.launch```
 
 Once this is done, build your package
 
