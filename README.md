@@ -42,11 +42,13 @@ The launch file spins up 3 ROS nodes:
 - The **planner** node. **FIX ME!**
 - The **goal_broadcaster** node.
 
-On Monday June 12, we will aim to:
+At first, we will aim to:
 - Finish the implementation of the **map_broadcaster** node.
 - Add basic goal reaching capabilities to the **planner** node.
 
-On Wednesday June 14, we will attempt to add obstacle avoidance capabilities to the **planner** node following a lecture on planning and motion planning.
+Following the appropriate lecture, we will attempt to add obstacle avoidance capabilities to the **planner** node following a lecture on planning and motion planning.
+
+All relevant source code is under ```tagslam_root/src/$TEAM_NAME/src/nodes```.
 
 
 ## map_broadcaster node
@@ -56,7 +58,7 @@ The Dict is then
 serialized and streamed to a UDP port and to the ```/map``` ROS topic. RL stuff will likely use the UDP port while
 the **planner** will rely on the ```/map``` topic.
 
-The **map_broadcaster** currently publishes a single dummy transform. Add more transforms! Useful resources include the [tf documentation](http://wiki.ros.org/tf#:~:text=tf%20is%20a%20package%20that,any%20desired%20point%20in%20time.) and our [slide deck](https://docs.google.com/presentation/d/1F9iwq6bkea_T5OmK-wOssms9SDahkwOUhxsbJf09pAY/edit?usp=sharing).
+The **map_broadcaster** currently publishes a single dummy transform. Add more transforms! You may want to have a look at the [tf documentation](http://wiki.ros.org/tf#:~:text=tf%20is%20a%20package%20that,any%20desired%20point%20in%20time.).
 
 Here are some useful commands. This one allows to visualize the transform tree and undertand the objects you can query. 
 You can safely igonore the ```camera_link``` and ```uodom``` trees, as well as the ```trunk``` subtree:
@@ -74,13 +76,13 @@ rostopic echo /map
 
 This node should read the map from the ```/map``` topic, run some planning computations and publish twist commands (linear and angular velocities) to the ```/cmd_vel``` topic.
 
-On Monday, you should begin by understanding how to move the robot around. You may try 
+You should begin by understanding how to move the robot around. You may try 
 - Moving the robot forward;
 - Having the robot rotate in place;
 - Having the robot walk in a circle.
 
 Following this, you should start using the ```map``` to move the robot the the ```goal``` pose.
-On Wednesday, we will investigate obstacle avoidance.
+
 
 **Please always run low velocities when first testing your code (e.g, 0.15). The robot does not need to sprint!**
 
