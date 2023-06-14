@@ -1,5 +1,6 @@
 <launch>
     <arg name="twist" default="false"/>
+    <arg name="rl_policy" default="false"/>
 
     <!--Goal Broadcaster-->
     <node pkg="mrss_motion" type="goal_broadcaster.py"
@@ -14,5 +15,10 @@
         <node pkg="mrss_motion" type="planner.py"
               name="goal_follower" ns="mrss_motion" />
     </group>
+
+    <!--Low level control -->
+    <group if="$(arg rl_policy)">
+        <node pkg="mrss_motion" type="rl_policy.py"
+              name="rl_policy" ns="mrss_motion" />
 
 </launch>
