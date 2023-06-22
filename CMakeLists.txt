@@ -206,3 +206,5 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+add_executable(goal_follower src/nodes/goal_follower.cpp)
+target_link_libraries(goal_follower ${catkin_LIBRARIES})
