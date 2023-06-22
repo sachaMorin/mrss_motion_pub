@@ -23,34 +23,23 @@ int main(int argc, char** argv){
       ros::Duration(1.0).sleep();
     }
 
+    // Read
+    double angle = atan2(transform.getOrigin().y(), transform.getOrigin().x());
+    double x = transform.getOrigin().x();
+    double y = transform.getOrigin().y();
+    ROS_WARN("GO");
+    ROS_WARN_STREAM("ANGLE: " << angle);
+    ROS_WARN_STREAM("LINEAR X: " << x);
+    ROS_WARN_STREAM("LINEAR Y: " << y);
+
     // Send commands
-    double angular = atan2(transform.getOrigin().y(), transform.getOrigin().x());
-    double linear = sqrt(pow(transform.getOrigin().x(), 2) + pow(transform.getOrigin().y(), 2));
     geometry_msgs::Twist cmd;
 
-    if (linear > 0.2)
-    {
-        cmd.angular.z = std::max(std::min(angular, 0.5), -0.5);
+    cmd.linear.x = 0.0;
+    cmd.linear.y = 0.0;
+    cmd.angular.z = 0.0;
 
-        // Only move forward if little to no angular velocity
-        if (std::abs(cmd.angular.z) < 0.35)
-            cmd.linear.x = std::min(0.15, linear);
-        else
-            cmd.linear.x = 0.0;
-
-        pub.publish(cmd);
-        ROS_WARN("GO");
-        ROS_WARN_STREAM("ANGULAR: " << angular);
-        ROS_WARN_STREAM("LINEAR: " << linear);
-    }
-    else
-    {
-        // Empty command
-        pub.publish(cmd);
-        ROS_ERROR("STOP");
-        ROS_ERROR_STREAM("ANGULAR: " << angular);
-        ROS_ERROR_STREAM("LINEAR: " << linear);
-    }
+    pub.publish(cmd);
 
     rate.sleep();
   }
